@@ -19,7 +19,6 @@ app.use(cors())
 
 app.use('/tasks', taskRoutes)
 
-// const CONNECTION_URL = 'mongodb+srv://admin:admin123@cluster0.njgrwgs.mongodb.net/?retryWrites=true&w=majority'
 const PORT = process.env.PORT
 
 mongoose.connect(process.env.CONNECTION_URL, {useNewUrlParser: true,
