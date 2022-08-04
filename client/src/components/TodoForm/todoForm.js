@@ -30,6 +30,13 @@ const TodoForm =  () => {
     const [todoTask,setTodoTask] = useState({
         task : '',
     })
+    const handleKey = (e) => {
+        if (e.key === 'Enter'){
+          // e.preventDefault()
+          console.log(e.key)
+          handleSubmit()
+        }
+      }
     const classes = useStyles()
     return(
 
@@ -38,7 +45,8 @@ const TodoForm =  () => {
         {/* <Container className = {classes.todoListForm}> */}
             <TextField className = {classes.teksPil} name='Task' fullWidth variant='filled' size='normal' label='Write your task here' spellCheck = 'false' 
             InputProps={{ disableUnderline: true }}
-            value={todoTask.task} onChange={(e)=> setTodoTask({ task: e.target.value})}/>
+            value={todoTask.task} onChange={(e)=> setTodoTask({ task: e.target.value})}
+            onKeyPress = {handleKey}/>
            
         {/* </Container> */}
             <IconButton sx={{
@@ -48,7 +56,7 @@ const TodoForm =  () => {
                  marginTop:'5px',
                  bottom: '3px',
                  left : '5px'
-            }}  size='large' onClick={handleSubmit} onKeyDown={handleSubmit}>
+            }}  size='large' onClick={handleSubmit}>
                 <AddIcon/>
                 </IconButton>
                 

@@ -31,17 +31,17 @@ function Task ({dask}) {
     borderRadius : 20
   }))
   
-  // const tasks = useSelector((stated)=>stated.tasks)
+  const tasks = useSelector((stated)=>stated.tasks)
   // const taskMap = tasks.map((task)=>(  task.isDone ))
  
 
-  const [checked, setChecked] = useState({
-    isDone : false
-  })
+  const [checked, detChecked] = useState(tasks.isDone)
+
+
 
   const handleChange = (e) => {
-    // e.preventDefault()
-    setChecked(e.target.checked)
+    e.preventDefault()
+    detChecked(!checked)
     dispatch(doneTask(dask._id))
   }
 
