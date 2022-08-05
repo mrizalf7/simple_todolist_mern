@@ -39,7 +39,7 @@ export const doneTask = async (req,res) => {
 
     // try {
         const task = await todoModel.findById(id)
-        const doneTasked = await todoModel.findByIdAndUpdate(id, { isDone: !task.isDone})
+        const doneTasked = await todoModel.findByIdAndUpdate(id, { isDone:!task.isDone})
         console.log(doneTasked)
         res.json(doneTasked)
         

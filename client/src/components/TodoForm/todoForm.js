@@ -35,6 +35,7 @@ const TodoForm =  () => {
           // e.preventDefault()
           console.log(e.key)
           handleSubmit()
+          setTodoTask({task:''})
         }
       }
     const classes = useStyles()
@@ -45,7 +46,7 @@ const TodoForm =  () => {
         {/* <Container className = {classes.todoListForm}> */}
             <TextField className = {classes.teksPil} name='Task' fullWidth variant='filled' size='normal' label='Write your task here' spellCheck = 'false' 
             InputProps={{ disableUnderline: true }}
-            value={todoTask.task} onChange={(e)=> setTodoTask({ task: e.target.value})}
+            value = {todoTask.task} onChange={(e)=> setTodoTask({...todoTask, task: e.target.value})}
             onKeyPress = {handleKey}/>
            
         {/* </Container> */}

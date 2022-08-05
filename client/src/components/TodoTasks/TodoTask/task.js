@@ -31,16 +31,13 @@ function Task ({dask}) {
     borderRadius : 20
   }))
   
-  const tasks = useSelector((stated)=>stated.tasks)
-  // const taskMap = tasks.map((task)=>(  task.isDone ))
- 
 
-  const [checked, detChecked] = useState(tasks.isDone)
+       
+  const [checked, detChecked] = useState(dask.isDone)
+  
 
-
-
-  const handleChange = (e) => {
-    e.preventDefault()
+  const handleChange = () => {
+    // e.preventDefault()
     detChecked(!checked)
     dispatch(doneTask(dask._id))
   }
@@ -50,14 +47,7 @@ function Task ({dask}) {
  
 
     return (
-      //  <Container className = {classes.mainContainer}>
-      //   <Typography className = {classes.taskList}>
-      //     {task.task}
-      //   </Typography>
-      //  </Container>
-
-
-      // <Grid sx={{ flexGrow: 2 }} container spacing={0}>
+    
       <Container className= {classes.mainContainer}>
 
       <Container className = {classes.secondContainer}>
@@ -82,7 +72,6 @@ function Task ({dask}) {
         </Grid>
       </Grid>
     </StyledPaper>
-       {/* <Container className = {classes.thirdContainer}> */}
 
     <IconButton sx={{
       backgroundColor:'white',
@@ -92,7 +81,7 @@ function Task ({dask}) {
       bottom: '3px',
       left : '5px'
     }}  size='large' >
-    <Checkbox onChange={handleChange} checked  = {checked}/>
+    <Checkbox onChange={handleChange} checked = {checked}/>
     </IconButton>
 
 
@@ -107,11 +96,9 @@ function Task ({dask}) {
         }}  size='large' onClick = {()=> dispatch(deleteTask(dask._id))}>
        <ClearIcon/>
        </IconButton>
-          {/* </Container> */}
           </Container>
         </Container>
 
-// {/* </Grid> */}
 
 
       
