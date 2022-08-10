@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography,Container,Grid,Avatar,
@@ -18,7 +18,7 @@ import { deleteTask } from '../../../actions/tasks'
 import { doneTask } from '../../../actions/tasks';
 // import { deletePost,likePost } from '../../../actions/tasks'
 
-function Task ({dask}) {
+function Task ({dask , setCurrentId}) {
 
   const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'white' ? '#1A2027' : '#fff',
@@ -59,7 +59,6 @@ function Task ({dask}) {
         p: 1.5,
       }}>
 
-
       <Grid>
         <Grid item>
         </Grid>
@@ -72,6 +71,19 @@ function Task ({dask}) {
         </Grid>
       </Grid>
     </StyledPaper>
+
+
+    <IconButton sx={{
+      backgroundColor:'white',
+      borderRadius:'50px',
+      marginLeft: '25px',
+      marginTop:'5px',
+      bottom: '3px',
+      left : '5px'
+    }}  size='large' >
+    <EditIcon onClick={() => setCurrentId(dask._id)}/>
+    </IconButton>
+
 
     <IconButton sx={{
       backgroundColor:'white',
@@ -98,10 +110,6 @@ function Task ({dask}) {
        </IconButton>
           </Container>
         </Container>
-
-
-
-      
     )
 }
 export default Task

@@ -9,7 +9,7 @@ import TodoForm from './components/TodoForm/todoForm'
 import Tasks from './components/TodoTasks/tasks'
 
 const App = () => {
-    // const [currentId, setCurrentId] = useState(0)
+    const [currentId, setCurrentId] = useState(0)
     const classes = useStyles()
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -24,17 +24,17 @@ const App = () => {
             <img className={classes.image} src={todolist} alt="todolist" height='75' />
             </AppBar>
 
-            <Grow in>
+            {/* <Grow in> */}
             <Container className = {classes.kontener}>
                 {/* <Grid> */}
-                <TodoForm/>
-                 <Tasks/>
+                <TodoForm currentId = {currentId} setCurrentId ={setCurrentId} />
+                 <Tasks setCurrentId = {setCurrentId}/>
 
                 {/* </Grid> */}
                
                 
             </Container>
-            </Grow>
+            {/* </Grow> */}
             </Container>
      
 

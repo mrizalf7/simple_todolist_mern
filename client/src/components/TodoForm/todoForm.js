@@ -5,26 +5,52 @@ import useStyles from './styles'
 import {useState,useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createTask } from '../../actions/tasks'
+import {updateTask } from '../../actions/tasks'
 
-const TodoForm =  () => {
+const TodoForm =  ({currentId,setCurrentId}) => {
       const clear = () => {
-            // setCurrentId(0)
+            setCurrentId(0)
             setTodoTask({  task : '', })
      }
 
+     const task = useSelector((statee) => (currentId ? statee.taskss.find((message) => message._id === currentId) : null))
+     
+     useEffect(() => {
+        if (task) setTodoTask(task)
+      }, [task])
+
     const dispatch = useDispatch()
     const handleSubmit = async (e) =>{
-        if(todoTask.task.length===0){
-            alert('Please input some tasks')
-            console.log(" don't send null values to your to do list")
+
+        
+        if (currentId === 0){
+            if(todoTask.task.length===0){
+                alert('Please input some tasks')
+                console.log("don't send null values to your to do list")
+            }
+            else{
+                // e.preventDefault()
+                dispatch(createTask(todoTask))
+                clear()
+                console.log(todoTask)
+            }
         }
         else{
-            // e.preventDefault()
-              dispatch(createTask(todoTask))
-              clear()
-              console.log(todoTask)
+            if(todoTask.task.length===0){
+                alert('Please input some tasks')
+                console.log("don't send null values to your to do list")
+            }
+            else{
+                 // e.preventDefault()
+                dispatch(updateTask(currentId,todoTask))
+                clear()
+                console.log(todoTask)
+            }
         }
+
     }
+
+    
     
 
     const [todoTask,setTodoTask] = useState({

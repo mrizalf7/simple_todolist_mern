@@ -6,8 +6,8 @@ import ClearIcon from '@mui/icons-material/Clear'
 import useStyles from './styles'
 import Clear from '@mui/icons-material/Clear'
 
-const Tasks = () => {
-  const tasks = useSelector((stated)=>stated.tasks)
+const Tasks = ({setCurrentId}) => {
+  const tasks = useSelector((stateds)=>stateds.taskss)
   const classes = useStyles()
   console.log(tasks)
   return (
@@ -16,7 +16,7 @@ const Tasks = () => {
           // <Container className = {classes.Naon}>
           <Container className = {classes.Naon}>{tasks.map((task)=>(
             // <Grid key= {task._id}>
-            <Task dask = {task}/>  
+            <Task dask = {task} setCurrentId = {setCurrentId} />  
             // </Grid>
             ))}</Container>
          

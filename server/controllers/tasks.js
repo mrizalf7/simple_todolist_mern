@@ -21,7 +21,7 @@ export const createTask = async (req,res) => {
         res.status(409).json({message:error})
     }
 }
-// parameter name doesn't matter but the sequence matters.
+// parameter names don't matter but the parameter sequences matter.
 
 export const deleteTask = async (req,res) => {
     const {id} = req.params
@@ -36,15 +36,27 @@ export const deleteTask = async (req,res) => {
 
 export const doneTask = async (req,res) => {
     const {id} = req.params
-
     // try {
+        
         const task = await todoModel.findById(id)
         const doneTasked = await todoModel.findByIdAndUpdate(id, { isDone:!task.isDone})
-        console.log(doneTasked)
+        // console.log(doneTasked)
         res.json(doneTasked)
         
     // } catch (error) {
         // res.status(404).json({message:error})
     // }
+}
 
+export const updateTask = async (req,res) => {
+    const {id} = req.params
+    const {task} = req.body
+    
+    // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`)
+
+    const updatedTask = { task:task, _id: id }
+
+    await todoModel.findByIdAndUpdate(id, updatedTask)
+
+    res.json(updatedTask)
 }

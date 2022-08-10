@@ -1,5 +1,5 @@
 import * as api from '../api'
-import { CREATE, DELETE, DONE, FETCH_ALL } from '../constants/actionTypes'
+import { CREATE, DELETE, UPDATE, DONE, FETCH_ALL } from '../constants/actionTypes'
 
 //Action Creators
 export const getTasks = () => async (dispatch)=>{
@@ -23,13 +23,22 @@ export const createTask = (task) => async (dispatched) => {
     }
   }
 
+export const updateTask = (id,task) => async (dispatch) =>{
+  try {
+    const { data } = await api.updateTask(id,task)
+    dispatch({ type: UPDATE, payload: data })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
   export const deleteTask = (id) => async (dispatch) => {
     try {
       await api.deleteTask(id)
 
       dispatch({ type: DELETE, payload: id })
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
     }
   }
   
